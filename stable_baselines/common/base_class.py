@@ -874,8 +874,8 @@ class ActorCriticRLModel(BaseRLModel):
 
             elif isinstance(self.action_space, gym.spaces.Box):
                 actions = actions.reshape((-1, ) + self.action_space.shape)
-                mean, logstd = actions_proba
-                std = np.exp(logstd)
+                mean, std = actions_proba
+                logstd = np.log(std)
 
                 n_elts = np.prod(mean.shape[1:])  # first dimension is batch size
                 log_normalizer = n_elts / 2 * np.log(2 * np.pi) + 0.5 * np.sum(logstd, axis=1)
