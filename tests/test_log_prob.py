@@ -26,5 +26,5 @@ def test_log_prob_calcuation(model_class, helpers):
     model.proba_step = helpers.proba_vals
 
     logprob = model.action_probability(np.array([[0.5],[0.5]]), 1, [False], 0.2, True)
-    assert np.all(logprob == np.array([-16.616353440210627])), \
+    assert np.all(np.abs(logprob - np.array([-16.616353440210627]))<1e-7), \
         "Calculation failed for {}".format(model_class)
