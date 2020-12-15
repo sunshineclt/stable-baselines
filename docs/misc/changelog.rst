@@ -19,6 +19,7 @@ New Features:
 
 Bug Fixes:
 ^^^^^^^^^^
+-Fixed calculation of the log probability of Diagonal Gaussian distribution
 
 Deprecations:
 ^^^^^^^^^^^^^
