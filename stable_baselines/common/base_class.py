@@ -878,10 +878,10 @@ class ActorCriticRLModel(BaseRLModel):
                 logstd = np.log(std)
 
                 n_elts = np.prod(mean.shape[1:])  # first dimension is batch size
-                log_normalizer = n_elts / 2 * np.log(2 * np.pi) + 0.5 * np.sum(logstd, axis=1)
+                log_normalizer = n_elts / 2.0 * np.log(2 * np.pi) + np.sum(logstd, axis=1)
 
                 # Diagonal Gaussian action probability, for every action
-                logprob = -np.sum(np.square(actions - mean) / (2 * std), axis=1) - log_normalizer
+                logprob = -np.sum(np.square(actions - mean) / (2 * np.square(std)), axis=1) - log_normalizer
 
             else:
                 warnings.warn("Warning: action_probability not implemented for {} actions space. Returning None."
